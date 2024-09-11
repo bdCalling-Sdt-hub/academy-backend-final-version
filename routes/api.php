@@ -61,11 +61,11 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     ['middleware' => 'auth:api']
 ], function ($router) {
-    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/register', [AuthController::class, 'register'])->middleware('verified');
     Route::get('/email-verified/{token}', [AuthController::class, 'emailVerifiedOtp'])->name('verify.email');
     Route::post('/email-verified', [AuthController::class, 'emailVerified']);
-//    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
+//    Route::post('/login', [AuthController::class, 'login']);
     Route::get('/profile', [AuthController::class, 'loggedUserData']);
     Route::post('/forget-pass', [AuthController::class, 'forgetPassword']);
     Route::post('/verified-checker', [AuthController::class, 'emailVerifiedForResetPass']);
@@ -356,7 +356,7 @@ Route::post('/course-enroll-authorization',[AddEmployeeController::class,'course
 ///====================== Website Api's =========================================
 
 Route::get('/filter-courses',[WebsiteController::class,'filterCourse']);
-Route::get('/popular-courses',[WebsiteController::class,'popularCourses']);
+//Route::get('/popular-courses',[WebsiteController::class,'popularCourses']);
 Route::resource('/gallery', GallerytController::class)->only('index');
 Route::resource('/event', EventController::class)->only('index','show');
 Route::resource('teachers',RTeacherController::class)->only('index');
