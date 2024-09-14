@@ -88,7 +88,7 @@ class AdmitController extends Controller
     {
         // Fetch enrolled students with related batch, course, and user information
         $query = BatchStudent::with(['batch.course', 'student.user'])
-            ->where('status','enrolled')
+            ->where('status',$request->status ?? 'enrolled')
             ->get()
             ->map(function ($student) {
                 // Fetch payment information based on student_id and batch_id
