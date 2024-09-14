@@ -88,6 +88,7 @@ class AdmitController extends Controller
     {
         // Fetch enrolled students with related batch, course, and user information
         $query = BatchStudent::with(['batch.course', 'student.user'])
+            ->where('status','enrolled')
             ->get()
             ->map(function ($student) {
                 // Fetch payment information based on student_id and batch_id
@@ -204,7 +205,7 @@ class AdmitController extends Controller
             return response()->json(['message' => 'Student Does Not Exist'],404);
         }
         $student->status = 'dropout';
-        $student->update();
+        $student->save();
         return response()->json(['message' => 'Student is dropout successfully'],200);
     }
 //        public function showDropOutStudent(Request $request)
