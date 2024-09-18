@@ -11,9 +11,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 class GallerytController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $gellary_image = Galleryr::orderBy('id', 'desc')->paginate(9);
+        $gellary_image = Galleryr::orderBy('id', 'desc')->paginate($request->per_page ?? 9);
         if ($gellary_image) {
             return response()->json([
                 'status' => 'success',
