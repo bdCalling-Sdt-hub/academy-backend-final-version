@@ -271,6 +271,7 @@ Route::post('/cancel', [PaymentSslcommerzeController::class, 'cancel']);
 Route::post('/ipn', [PaymentSslcommerzeController::class, 'ipn']);
 
 Route::middleware(['admin','auth:api'])->group(function (){
+    Route::resource('admins',AddEmployeeController::class)->only('update');
     Route::get('all-reviews',[ReviewController::class,'allReviews']);
     Route::resource('reviews', ReviewController::class)->only('destroy');
     Route::resource('/gallery', GallerytController::class)->except('index');
@@ -362,6 +363,6 @@ Route::get('course-reviews', [ReviewController::class, 'courseReviews']);
 
 Route::middleware(['super.admin','auth:api'])->group(function (){
     //====================== Manage Admins / Super admins ====================================
-    Route::resource('admins',AddEmployeeController::class)->except('create','edit');
+    Route::resource('admins',AddEmployeeController::class)->except('create','edit','update');
     Route::get('show-super-admin',[AddEmployeeController::class,'showSuperAdmin']);
 });
