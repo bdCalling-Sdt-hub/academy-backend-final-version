@@ -34,6 +34,7 @@ class EventController extends Controller
         $event->end_time = $request->end_time;
         $event->locations = $request->locations;
         $event->descriptions = $request->descriptions;
+        $event->status = $request->status;
         if ($request->file('image')) {
             if (!empty($event->image)) {
                 removeImage($event->image);
@@ -74,6 +75,7 @@ class EventController extends Controller
         $event->end_time = $request->end_time ?? $event->end_time;
         $event->locations = $request->locations ?? $event->locations;
         $event->descriptions = $request->descriptions ?? $event->descriptions;
+        $event->status = $request->status ?? $event->status;
         if ($request->file('image')) {
             if (!empty($event->image)) {
                 removeImage($event->image);
