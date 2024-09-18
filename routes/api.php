@@ -151,7 +151,7 @@ Route::post('/store-subscriber', [FreSemenarController::class, 'subscrib_store']
 Route::get('/show-subscriber', [FreSemenarController::class, 'show_subscriber']);
 Route::get('/destry-subscriber/{id}', [FreSemenarController::class, 'destroy_subscriber']);
 
-Route::middleware(['super.admin','auth:api'])->group(function (){
+Route::middleware(['admin','auth:api'])->group(function (){
 
     //===================== Show Batch wise teacher--------------------
     Route::get('/show-assign-module',[RTeacherController::class,'showAssignModule']);
@@ -163,9 +163,7 @@ Route::middleware(['super.admin','auth:api'])->group(function (){
     Route::post('approve-leave-application',[RTeacherController::class,'approveLeaveRequest']);
     Route::post('reject-leave-application',[RTeacherController::class,'rejectLeaveRequest']);
 
-    //====================== Manage Admins / Super admins ====================================
-    Route::resource('admins',AddEmployeeController::class)->except('create','edit');
-    Route::get('show-super-admin',[AddEmployeeController::class,'showSuperAdmin']);
+
 
     //====================== Teachers Payment ====================================
     Route::post('add-teacher-salary',[CostController::class,'addTeacherSalary']);
@@ -361,3 +359,9 @@ Route::resource('/gallery', GallerytController::class)->only('index');
 Route::resource('/event', EventController::class)->only('index','show');
 Route::resource('teachers',RTeacherController::class)->only('index');
 Route::get('course-reviews', [ReviewController::class, 'courseReviews']);
+
+Route::middleware(['super.admin','auth:api'])->group(function (){
+    //====================== Manage Admins / Super admins ====================================
+    Route::resource('admins',AddEmployeeController::class)->except('create','edit');
+    Route::get('show-super-admin',[AddEmployeeController::class,'showSuperAdmin']);
+});
