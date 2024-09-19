@@ -40,7 +40,7 @@ use App\Http\Controllers\Api\SuperAdmin\AssessionController;
 use App\Http\Controllers\Api\SuperAdmin\ContactUsController;
 use App\Http\Controllers\Api\SuperAdmin\EventController;
 use App\Http\Controllers\Api\SuperAdmin\GallerytController;
-use App\Http\Controllers\Api\SuperAdmin\successStoryController;
+use App\Http\Controllers\Api\SuperAdmin\SuccessStoryController;
 use App\Http\Controllers\Api\SuperAdmin\AdmittedController;
 use App\Http\Controllers\Api\SuperAdmin\DropoutStudentController;
 use App\Http\Controllers\Api\SuperAdmin\SendSMScontroller;
@@ -129,7 +129,7 @@ Route::post('/update/terms', [AboutController::class, 'terms_condition']);
 // with web api
 
 Route::resource('/assession', AssessionController::class);
-Route::resource('/success/story', successStoryController::class);
+Route::resource('/success/story', SuccessStoryController::class);
 
 
 
