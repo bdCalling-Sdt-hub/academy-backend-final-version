@@ -31,6 +31,7 @@ class SuccessStoryController extends Controller
         $type = $request->type;
         $story = new SuccessStory();
         $story->file = $request->file;
+        $story->type = $request->type;
         $story->save();
         return response()->json($story);
     }
