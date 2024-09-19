@@ -64,7 +64,8 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register'])->middleware('verified');
     Route::get('/email-verified/{token}', [AuthController::class, 'emailVerifiedOtp'])->name('verify.email');
     Route::post('/email-verified', [AuthController::class, 'emailVerified']);
-    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
+//    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:login');
+    Route::post('/login', [AuthController::class, 'login']);
 //    Route::post('/login', [AuthController::class, 'login']);
     Route::get('/profile', [AuthController::class, 'loggedUserData']);
     Route::post('/forget-pass', [AuthController::class, 'forgetPassword']);
